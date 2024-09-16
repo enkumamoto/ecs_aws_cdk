@@ -27,6 +27,11 @@ class EcsAwsVpcStack(Stack):
                                        "cidrMask": 20,
                                        "name": "Private",
                                        "subnetType": aws_ec2.SubnetType.PRIVATE_WITH_EGRESS
+                                   },
+                                   {
+                                       "cidrMask": 20,
+                                       "name": "DataBase",
+                                       "subnetType": aws_ec2.SubnetType.PRIVATE_WITH_EGRESS
                                    }
                                ],
                                gateway_endpoints={

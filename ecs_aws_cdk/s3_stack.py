@@ -14,8 +14,8 @@ class S3Stack(Stack):
 
         suffix = self.__initialize_suffix()
 
-        self.bucket = s3.Bucket(self, "LambdasBucket",
-                                bucket_name = f"lambdasbucket-{suffix}",
+        self.bucket = s3.Bucket(self, "LogsBucket",
+                                bucket_name = f"logsbucket-{suffix}",
                                 object_ownership = s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,                                
                                 block_public_access = s3.BlockPublicAccess.BLOCK_ALL,
                                 server_access_logs_prefix = "logs",
@@ -27,7 +27,7 @@ class S3Stack(Stack):
                                 removal_policy = cdk.RemovalPolicy.DESTROY,
                                 auto_delete_objects = True
                                 )
-        CfnOutput(self, "LambdasBucketOutput",
+        CfnOutput(self, "LogsBucketOutput",
                   value = self.bucket.bucket_name)
         
     def __initialize_suffix(self):
@@ -37,5 +37,5 @@ class S3Stack(Stack):
         return suffix
     
     @property
-    def Lambdasbucket(self):
+    def Logsbucket(self):
         return self.bucket

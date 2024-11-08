@@ -11,13 +11,11 @@ class ECRRawStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        repository = ecr.Repository(self, "ProjectRepo",
-    image_scan_on_push=True,
-    removal_policy=RemovalPolicy.DESTROY,
-    empty_on_delete=True
-    )
+        docker_repository = ecr.Repository(self, "DockerRepo",
+                                    image_scan_on_push=True
+                                    )
         
-        role = iam.Role(self, "PushPullRole",
+        docker_role = iam.Role(self, "DockerPushPullRole",
                  assumed_by = iam.ServicePrincipal("codebuild.amazonaws.com")
                  )
-        repository.grant_pull_push(role)
+        docker_repository.grant_pull_push(docker_role)

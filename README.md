@@ -31,7 +31,7 @@ O stack também exibe o nome dos buckets criados.
 
 ## 2. ECRRaw Stack
 
-O ECRRaw Stack cria um repositório ECR e uma role IAM para permitir empurrar/puxar Docker. Configura o ECR para varredores de imagem ao fazer push.
+O ECRRaw Stack cria um repositório ECR e uma role IAM para permitir push/pull Docker. Configura o ECR para varredores de imagem ao fazer push.
 
 ## 3. Lambda Stack
 

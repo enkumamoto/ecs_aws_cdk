@@ -21,7 +21,7 @@ O S3 Stack cria três buckets S3 diferentes:
 - Um para Lambda
 
 Características dos buckets:
-- Nomeado como `{nome}bucket-{suffix}`
+- Nomeado como `{name}bucket-{suffix}`
 - Configurado com política de bloqueio de acesso público
 - Configurado com logs de acesso
 - Define uma regra de ciclo de vida para expiração após 3 dias
@@ -31,7 +31,7 @@ O stack também exibe o nome dos buckets criados.
 
 ## 2. ECRRaw Stack
 
-O ECRRaw Stack cria um repositório ECR e uma role IAM para permitir empurrar/puxar Docker. Configura o ECR para varredores de imagem ao fazer push.
+O ECRRaw Stack cria um repositório ECR e uma role IAM para permitir push/pull Docker. Configura o ECR para varredores de imagem ao fazer push.
 
 ## 3. Lambda Stack
 
@@ -56,7 +56,7 @@ Para usar este projeto:
 3. Sintetize modelo CloudFormation: `cdk synth`
 4. Implante o stack desejado: `cdk deploy`
 
-Lembre-se de substituir `{nome}` pelos nomes dos buckets ao implantar o S3 Stack.
+Lembre-se de substituir `{name}` pelos nomes dos buckets ao implantar o S3 Stack.
 
 ## Guia Rápido de Início
 

@@ -2,6 +2,12 @@
 
 Este é um projeto CDK Python para criar recursos AWS usando construções reutilizáveis e idiomas CDK específicos em Python.
 
+## Guia Rápido de Início
+
+Em caso de nunca ter trabalhado ou visto o CDK antes, aqui está um guia rápido para começar:
+
+<https://github.com/enkumamoto/AWS-CDK-READMEs>
+
 ## Estrutura do Projeto
 
 Este projeto contém quatro stacks principais:
@@ -57,10 +63,3 @@ Para usar este projeto:
 4. Implante o stack desejado: `cdk deploy`
 
 Lembre-se de substituir `{name}` pelos nomes dos buckets ao implantar o S3 Stack.
-
-## Guia Rápido de Início
-
-1. Instale Python 3.6+ se ainda não tiver instalado
-2. Instale o CDK Toolkit e Node.js
-3. Crie um novo projeto:
-```

@@ -1,58 +1,66 @@
+# Bem-vindo ao projeto CDK Python!
 
-# Welcome to your CDK Python project!
+Este é um projeto CDK Python para criar recursos AWS usando construções reutilizáveis e idiomas CDK específicos em Python.
 
-This is a blank project for CDK development with Python.
+## Estrutura do Projeto
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Este projeto contém quatro stacks principais:
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+1. S3 Stack
+2. ECRRaw Stack  
+3. Lambda Stack
+4. VPC Stack
 
-To manually create a virtualenv on MacOS and Linux:
+Cada stack é responsável por uma funcionalidade específica do projeto AWS.
 
+## 1. S3 Stack
+
+O S3 Stack cria três buckets S3 diferentes:
+- Um para logs
+- Um para Athena 
+- Um para Lambda
+
+Características dos buckets:
+- Nomeado como `{nome}bucket-{suffix}`
+- Configurado com política de bloqueio de acesso público
+- Configurado com logs de acesso
+- Define uma regra de ciclo de vida para expiração após 3 dias
+- Define uma política de remoção para DESTRUIR
+
+O stack também exibe o nome dos buckets criados.
+
+## 2. ECRRaw Stack
+
+O ECRRaw Stack cria um repositório ECR e uma role IAM para permitir empurrar/puxar Docker. Configura o ECR para varredores de imagem ao fazer push.
+
+## 3. Lambda Stack
+
+O Lambda Stack cria uma função Lambda:
+- Usa um handler Python localizado em `my-python-handler`
+- Configura um alarme CloudWatch para monitorar tempo de execução
+- Adiciona políticas gerenciadas básica e de acesso à VPC para a role da função
+
+## 4. VPC Stack
+
+O VPC Stack cria uma VPC com:
+- CIDR 10.0.0.0/16
+- Três subnets públicos e privados (máscara 20)
+- Endpoints da VPC para acesso à S3
+- Exibe o ID da VPC como saída
+
+## Próximos Passos
+
+Para usar este projeto:
+1. Ative a ambiente virtual: `source .venv/bin/activate` (ou equivalente para Windows)
+2. Instale dependências: `pip install -r requirements.txt`
+3. Sintetize modelo CloudFormation: `cdk synth`
+4. Implante o stack desejado: `cdk deploy`
+
+Lembre-se de substituir `{nome}` pelos nomes dos buckets ao implantar o S3 Stack.
+
+## Guia Rápido de Início
+
+1. Instale Python 3.6+ se ainda não tiver instalado
+2. Instale o CDK Toolkit e Node.js
+3. Crie um novo projeto:
 ```
-$ python3 -m venv .venv
-```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!

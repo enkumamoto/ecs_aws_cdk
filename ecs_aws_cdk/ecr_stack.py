@@ -1,6 +1,9 @@
 import aws_cdk as cdk
+import os
+import subprocess
 from aws_cdk import (
     Stack,
+    aws_ecr_assets as ecr_assets,
     aws_ecr as ecr,
     aws_iam as iam
 )
@@ -12,15 +15,24 @@ class ECRRawStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # Criar um repositório ECR
-        docker_repository = ecr.Repository(self, "DockerRepo",
-                                    image_scan_on_push=True
-                                    )
+        repo = ecr.Repository(self, "HelloWorldRepository")
 
         # Criar uma role IAM para permitir o empurrar e puxar do Docker
         docker_role = iam.Role(self, "DockerPushPullRole",
-                 assumed_by = iam.ServicePrincipal("codebuild.amazonaws.com")
-                 )
+            assumed_by=iam.ServicePrincipal("codebuild.amazonaws.com")
+        )
 
         # Conceder permissões ao Docker para puxar e empurrar
-        docker_repository.grant_pull_push(docker_role)
+        repo.grant_pull_push(docker_role)
 
+        # Criar um asset Docker
+        asset = ecr_assets.DockerImageAsset(self, "HelloWorldImage",
+            directory=context_dir,
+            build_args={
+                "ARG_NAME": "value"
+            },
+            target="sandbox"
+        )
+
+        # Imprimir o URI da imagem construída
+        cdk.CfnOutput(self, "ImageURI", value=asset.image_uri)

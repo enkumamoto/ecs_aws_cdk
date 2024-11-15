@@ -7,9 +7,7 @@ Este é um projeto CDK Python para criar recursos AWS usando construções reuti
 Em caso de nunca ter trabalhado ou visto o CDK antes, aqui está um guia rápido para começar:
 
 <p align="center">
- <a href="https://github.com/enkumamoto/AWS-CDK-READMEs">Tudo sobre AWS CDK com Python</a>
-
-Tudo sobre AWS CDK com Python: <https://github.com/enkumamoto/AWS-CDK-READMEs>
+ <a href="https://github.com/enkumamoto/AWS-CDK-READMEs">AWS CDK com Python para iniciantes (PT-BR)</a>
 
 ## Estrutura do Projeto
 

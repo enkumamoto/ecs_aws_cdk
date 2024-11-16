@@ -17,6 +17,8 @@ Este projeto contém quatro stacks principais:
 2. ECRRaw Stack  
 3. Lambda Stack
 4. VPC Stack
+5. Load Balancer Stack
+6. Security Group Stack
 
 Cada stack é responsável por uma funcionalidade específica do projeto AWS.
 
@@ -54,6 +56,16 @@ O VPC Stack cria uma VPC com:
 - Três subnets públicos e privados (máscara 20)
 - Endpoints da VPC para acesso à S3
 - Exibe o ID da VPC como saída
+
+## 5. Load Balancer Stack
+O Load Balancer Stack cria um ApplicationLoadBalancer na região especificada:
+- Utiliza o arquivo load_balance.py
+- Configura o load balancer com internet_facing=True e idle_timeout=60 segundos
+
+## 6. Security Group Stack
+O Security Group Stack cria um grupo de segurança na VPC especificada:
+- Utiliza o arquivo security_group.py
+- Permite conexões TCP na porta 443 (HTTPS) para qualquer IP
 
 ## Próximos Passos
 

@@ -11,6 +11,7 @@ class LoadBalancer(Stack):
     def __init__(self, scope: Construct, construct_id: str, vpc: ec2.Vpc, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
+        # Cria um ApplicationLoadBalancer na região especificada
         self.load_balancer = elbv2.ApplicationLoadBalancer(
             self, "ApplicationLoadBalancer",
             vpc=vpc,

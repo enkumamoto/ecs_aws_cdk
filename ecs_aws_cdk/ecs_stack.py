@@ -33,3 +33,5 @@ class FrontendEcsStack(Stack):
             memory_limit_mib=512,
             port_mappings=[ecs.PortMapping(container_port=3000)]
         )
+        
+        

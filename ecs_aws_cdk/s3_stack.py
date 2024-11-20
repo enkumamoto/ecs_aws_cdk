@@ -13,7 +13,7 @@ class S3Stack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Lista de nomes de buckets a serem criados
-        bucket_names = ["logs", "athena", "lambda"]
+        bucket_names = ["logs", "lambda"]
 
         # Iterar através de cada nome de bucket
         for name in bucket_names:

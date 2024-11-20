@@ -12,9 +12,17 @@ class LoadBalancer(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Cria um ApplicationLoadBalancer na região especificada
-        self.load_balancer = elbv2.ApplicationLoadBalancer(
+        elb = elbv2.ApplicationLoadBalancer(
             self, "ApplicationLoadBalancer",
             vpc=vpc,
             internet_facing=True,
             idle_timeout=cdk.Duration.seconds(60)
         )
+        
+        listener = elb.add_listener("Listener",
+                         port=80,
+                         open=True
+                         )
+        
+        listener.add_targets("Application",
+                        port=8080)

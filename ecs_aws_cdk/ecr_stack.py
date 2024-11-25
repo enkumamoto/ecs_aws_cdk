@@ -12,13 +12,17 @@ from constructs import Construct
 class ECRRawStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
+        
+        ecr_names = ["frontend", "keycloak"]
+        
+        for name in ecr_names:
+            
+            repo = ecr.Repository(self, f"{name}Repository")
 
-        repo = ecr.Repository(self, "ProjectRepository")
+            # Criar uma role IAM para permitir o empurrar e puxar do Docker
+            docker_role = iam.Role(self, f"{name}DockerPushPullRole",
+                assumed_by=iam.ServicePrincipal("codebuild.amazonaws.com")
+            )
 
-        # Criar uma role IAM para permitir o empurrar e puxar do Docker
-        docker_role = iam.Role(self, "DockerPushPullRole",
-            assumed_by=iam.ServicePrincipal("codebuild.amazonaws.com")
-        )
-
-        # Conceder permissões ao Docker para puxar e empurrar
-        repo.grant_pull_push(docker_role)
+            # Conceder permissões ao Docker para puxar e empurrar
+            repo.grant_pull_push(docker_role)

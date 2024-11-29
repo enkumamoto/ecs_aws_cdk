@@ -1,6 +1,8 @@
 import aws_cdk as cdk
 import os
-import subprocess
+from subprocess import (
+    call
+)
 from aws_cdk import (
     Stack,
     aws_ecr as ecr,
@@ -13,7 +15,7 @@ class ECRRawStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
         
-        ecr_names = ["frontend", "keycloak"]
+        ecr_names = ["keycloak"]
         
         for name in ecr_names:
             
@@ -26,3 +28,8 @@ class ECRRawStack(Stack):
 
             # Conceder permissões ao Docker para puxar e empurrar
             repo.grant_pull_push(docker_role)
+
+    def execute_bash_script(self):
+        scrpit_path = "~/coding/AWS/ecs_aws_cdk/ecr.sh"
+        command = f"bash {scrpit_path}"
+        call(command, shell=True)  # execute the command

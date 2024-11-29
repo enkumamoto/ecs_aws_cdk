@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import aws_cdk as cdk
 from ecs_aws_cdk.vpc_stack import VpcStack
 from ecs_aws_cdk.s3_stack import S3Stack

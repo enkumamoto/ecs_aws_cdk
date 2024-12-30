@@ -28,11 +28,6 @@ class VpcStack(Stack):
           "cidrMask": 20,
           "name": "Private_Subnet",
           "subnetType": aws_ec2.SubnetType.PRIVATE_WITH_EGRESS
-        },
-        {
-          "cidrMark": 20,
-          "name": "DB_Subnet",
-          "subnetType": aws_ec2.SubnetType.PRIVATE_WITH_EGRESS
         }
       ],
       

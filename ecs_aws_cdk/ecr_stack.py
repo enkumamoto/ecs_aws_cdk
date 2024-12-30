@@ -3,7 +3,7 @@ from aws_cdk import (
     Stack,
     aws_ecr as ecr,
     aws_iam as iam
-)
+) 
 
 from constructs import Construct
 

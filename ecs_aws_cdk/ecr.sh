@@ -6,7 +6,7 @@ echo "Account ID: $(aws sts get-caller-identity --query Account --output text)"
 echo "ARN Profile: $(aws sts get-caller-identity --query Arn --output text)"
 
 # Defina as variáveis
-REPOSITORY_NAME="blackstone/keycloak"
+REPOSITORY_NAME="obsidian/keycloak"
 REGION="us-east-1"  # Altere para a sua região desejada
 ACCOUNT_ID="205930629613"  # Substitua pelo seu ID da conta AWS
 PROFILE="arn:aws:iam::205930629613:user/local-exec"

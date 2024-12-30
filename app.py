@@ -20,3 +20,4 @@ loadbalance = LoadBalancer(app, "LoadBalancer", vpc=vpc_stack.vpc)
 # security_group = SecurityGroup(app, "SecurityGroup", vpc=vpc_stack.vpc)
 
 app.synth()
+ 
